@@ -1,9 +1,5 @@
-# example_use_current_with_cmake
+#!/bin/bash
 
-Please refer to `run.sh` for the strongly consistent version. Below is some eventually consistent one.
-
-```
-make
 ./.current/print_primes
 ./.current/print_primes -n 20
 
@@ -26,4 +22,3 @@ make debug
 ./.current_debug/test_primes
 
 make debug_test
-```
