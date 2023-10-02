@@ -1,0 +1,1 @@
+# example_use_current_with_cmake
