@@ -9,6 +9,11 @@ make
 
 make test
 
+./.current/write_primes
+./.current/process_primes
+./.current/write_primes -n 20
+./.current/process_primes
+
 make debug
 ./.current_debug/print_primes
 ./.current_debug/print_primes -n 20
