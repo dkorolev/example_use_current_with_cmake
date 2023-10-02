@@ -1,3 +1,5 @@
 .current
 .current_debug
 CMakeLists.txt.user
+
+primes.bin
