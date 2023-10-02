@@ -1,6 +1,7 @@
 #pragma once
 
 #include "typesystem/struct.h"
+#include "typesystem/reflection/reflection.h"
 
 CURRENT_STRUCT(Number) {
   CURRENT_FIELD(value, uint32_t);
