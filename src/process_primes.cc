@@ -1,7 +1,7 @@
 #include <iostream>
 
+#include "blocks/blobs/blobs.h"
 #include "bricks/dflags/dflags.h"
-#include "utils/blobs/blobs.h"
 
 #include "gen_primes.h"
 #include "schema.h"
