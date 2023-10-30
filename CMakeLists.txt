@@ -29,8 +29,7 @@ function(add_local_dep_or_clone dep remote tag)
   endif()
 endfunction()
 
-# TODO(dkorolev): Replace by `stable` of `c5t/current`.
-add_local_dep_or_clone(current https://github.com/dkorolev/current gentle_cmake)
+add_local_dep_or_clone(current https://github.com/c5t/current stable)
 add_local_dep_or_clone(googletest https://github.com/c5t/googletest v1.14)
 
 # Declare libraries as library targets. And add them into the `ALL_LIBRARIES` list.
