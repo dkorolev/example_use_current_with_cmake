@@ -3,6 +3,7 @@ CMakeLists.txt
 
 current
 googletest
+trivial_dep
 
 .current/
 .current_debug/
