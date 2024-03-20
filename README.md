@@ -9,7 +9,6 @@ git clone --depth 1 -b v1.14 https://github.com/c5t/googletest
 time (cd example_use_current_with_cmake; make -j)
 ```
 
-
 ## Longer version
 
 Please refer to `run.sh` for the strongly consistent version. Below is some eventually consistent one.

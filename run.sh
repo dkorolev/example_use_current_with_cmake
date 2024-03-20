@@ -1,5 +1,7 @@
 #!/bin/bash
 
+make
+
 ./.current/print_primes
 ./.current/print_primes -n 20
 
