@@ -1,7 +1,4 @@
-# NOTE(dkorolev): 99% of the goal of this `Makefile` is to have `vim` jump to errors on `:mak`.
-#
-# NOTE(dkorolev): Yes, I am well aware it is ugly to have a `Makefile` for a `cmake`-built project.
-#                 Am just too much of a `vi` user to not leverage `:mak`.
+# This is a pure copy of the `Makefile` from `C5T/Current/cmake/`.
 
 .PHONY: release debug release_dir debug_dir release_test debug_test test fmt clean
 
@@ -17,10 +14,11 @@ endif
 
 CLANG_FORMAT=$(shell echo "$${CLANG_FORMAT:-clang-format}")
 
-release: release_dir
+release: release_dir CMakeLists.txt
 	@MAKEFLAGS=--no-print-directory cmake --build "${RELEASE_BUILD_DIR}" -j ${CORES}
 
-release_dir: ${RELEASE_BUILD_DIR}
+release_dir: ${RELEASE_BUILD_DIR} .gitignore
+	@grep "^${RELEASE_BUILD_DIR}/$$" .gitignore >/dev/null || echo "${RELEASE_BUILD_DIR}/" >>.gitignore
 
 ${RELEASE_BUILD_DIR}: CMakeLists.txt src
 	@cmake -DCMAKE_BUILD_TYPE=Release -B "${RELEASE_BUILD_DIR}" .
@@ -28,10 +26,11 @@ ${RELEASE_BUILD_DIR}: CMakeLists.txt src
 test: release
 	@(cd "${RELEASE_BUILD_DIR}"; make test)
 
-debug: debug_dir
+debug: debug_dir CMakeLists.txt
 	@MAKEFLAGS=--no-print-directory cmake --build "${DEBUG_BUILD_DIR}" -j ${CORES}
 
-debug_dir: ${DEBUG_BUILD_DIR}
+debug_dir: ${DEBUG_BUILD_DIR} .gitignore
+	@grep "^${DEBUG_BUILD_DIR}/$$" .gitignore >/dev/null || echo "${DEBUG_BUILD_DIR}/" >>.gitignore
 
 ${DEBUG_BUILD_DIR}: CMakeLists.txt src
 	@cmake -B "${DEBUG_BUILD_DIR}" .
@@ -43,6 +42,12 @@ test: release_test
 
 fmt:
 	${CLANG_FORMAT} -i src/*.cc src/*.h
+
+CMakeLists.txt:
+	@curl -s https://raw.githubusercontent.com/C5T/Current/stable/cmake/CMakeLists.txt >$@
+
+.gitignore:
+	@touch .gitignore
 
 clean:
 	rm -rf "${DEBUG_BUILD_DIR}" "${RELEASE_BUILD_DIR}"

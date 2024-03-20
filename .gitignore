@@ -1,5 +1,12 @@
-.current
-.current_debug
+# This is deliberate, to pick the most up-to-date one from `C5T/Current/cmake/`.
+CMakeLists.txt
+
+current
+googletest
+
+.current/
+.current_debug/
+
 CMakeLists.txt.user
 
 primes.bin
